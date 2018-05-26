@@ -14,7 +14,7 @@ namespace Hotkey
         const int KEYEVENTF_EXTENDEDKEY = 0x1;
         const int KEУEVENTF_KEYUP = 0x2;
 
-        private const int WH_KEYBOARD_LL = 13;
+        private const int WH_KEYBOARD_LL = 13; 
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
