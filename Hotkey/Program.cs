@@ -59,46 +59,6 @@ namespace Hotkey
             }
         }
 
-        private static void TogglePageUp()
-        {
-            UnhookWindowsHookEx(_hookID);
-
-            keybd_event(0x21, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
-            keybd_event(0x21, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
-
-            _hookID = SetHook(_proc);
-        }
-
-        private static void TogglePageDown()
-        {
-            UnhookWindowsHookEx(_hookID);
-
-            keybd_event(0x22, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
-            keybd_event(0x22, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
-
-            _hookID = SetHook(_proc);
-        }
-
-        private static void ToggleEnd()
-        {
-            UnhookWindowsHookEx(_hookID);
-
-            keybd_event(0x23, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
-            keybd_event(0x23, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
-
-            _hookID = SetHook(_proc);
-        }
-
-        private static void ToggleHome()
-        {
-            UnhookWindowsHookEx(_hookID);
-
-            keybd_event(0x24, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
-            keybd_event(0x24, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
-
-            _hookID = SetHook(_proc);
-        }
-
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
@@ -118,6 +78,30 @@ namespace Hotkey
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+
+        private static void TogglePageUp()
+        {
+            keybd_event(0x21, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
+            keybd_event(0x21, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
+        }
+
+        private static void TogglePageDown()
+        {
+            keybd_event(0x22, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
+            keybd_event(0x22, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
+        }
+
+        private static void ToggleEnd()
+        {
+            keybd_event(0x23, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
+            keybd_event(0x23, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
+        }
+
+        private static void ToggleHome()
+        {
+            keybd_event(0x24, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
+            keybd_event(0x24, 0x45, KEYEVENTF_EXTENDEDKEY | KEУEVENTF_KEYUP, (UIntPtr)0);
         }
     }
 }
